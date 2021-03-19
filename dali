@@ -1,0 +1,82 @@
+#!/bin/bash
+
+ARRAY=("$@")
+for ARG in "${ARRAY[@]}"; do
+     echo "$ARG"
+done
+
+DIRECTORIO="${ARRAY[0]}"
+HEADERMAY="${ARRAY[1]^^}"
+HEADERMIN="${ARRAY[1],,}"
+FILES="${ARRAY[@]:2}"
+
+mkdir $DIRECTORIO && cd $DIRECTORIO && echo -E "#include \"variadic_functions.h\"
+/**
+ *  - ..
+ * @p: ..
+ * @o: ..
+ * Return:..
+ */
+prototiposincoma
+{
+comprobar que existen los parámetros
+(*f)(algo);
+return (0);
+}" | tee $FILES && echo -E "
+#ifndef $HEADERMAY_H
+#define $HEADERMAY_H
+#include <stdio.h>
+
+int _putchar(char c);
+
+#endif /* HEADERMAY_H */
+" | tee $HEADERMIN.h && echo -E "
+# Titulo
+Ponga el meme aqui
+---
+> ## Introduction
+Descripcion general aqui. 
+
+### Flowchart 
+
+Ponga el flowchart aqui.
+
+---
+>## Files
+These are the files contained in this repository:
+- **nombre** : que hace.
+
+---
+> ## Documentation
+
+To use this function that clones the printf function, you must clone the \`[printf](LINKDEESTEREPO)\` repository.
+
+---
+> ## Compilation
+
+Your code will be compiled this way:
+\`\`\`c
+gcc -Wall -Werror -Wextra -pedantic 
+\`\`\`\`
+* Our main files will include your main header file (\`NOMBREDELHEADERFILE\`): \`#include \"$HEADERMIN.h\"\`
+
+---
+> ## Examples to use it
+
+*Example 0*
+
+Ponga aqui el ejemplo
+
+    Output: Ponga aqui el output.
+
+---
+
+>## Environment
+ This project has been tested on \`Ubuntu 14.06.6 LTS\`
+
+---
+
+>## Authors
+
+* **Natalia Vera** [github](https://github.com/Naveduran) - naveduran@gmail.com
+" |tee README.md
